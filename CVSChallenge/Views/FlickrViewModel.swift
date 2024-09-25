@@ -46,11 +46,10 @@ class FlickrViewModel: NSObject, ObservableObject {
         }
     }
     
-    func getFlickerData(matching: String) async throws -> FlickrData? {
-        os_log(.info, "CVS-VM 🔹 Searching for:\(matching)")
+    func getFlickerData(searchString: String) async throws -> FlickrData? {
         let json: FlickrData
         
-        let url = APIConstants.flickrDataURL + matching
+        let url = APIConstants.flickrDataURL + searchString
         let (data, response) = try await URLSession.shared.data(from: URL(string: url)!)
         
         guard let httpResponse = response as? HTTPURLResponse,
@@ -72,7 +71,7 @@ class FlickrViewModel: NSObject, ObservableObject {
         
         Task {
             var searchResults: FlickrData?
-            try await searchResults = getFlickerData(matching: matching)
+            try await searchResults = getFlickerData(searchString: matching)
             if let results = searchResults {
                 try await self.getthumbnailData(items: results.items)
             }
