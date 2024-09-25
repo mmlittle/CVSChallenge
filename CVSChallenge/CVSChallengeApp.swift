@@ -2,7 +2,7 @@
 //  CVSChallengeApp.swift
 //  CVSChallenge
 //
-//  Created by llamaman on 9/23/24.
+//  Created by llamaman on 9/24/24.
 //
 
 import SwiftUI
@@ -11,7 +11,7 @@ import SwiftUI
 struct CVSChallengeApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            FlickerCollectionView()
         }
     }
 }
